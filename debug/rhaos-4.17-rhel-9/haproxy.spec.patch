@@ -1,0 +1,21 @@
+diff --git a/haproxy.spec b/haproxy.spec
+index 4790ac2..c0d77f8 100644
+--- a/haproxy.spec
++++ b/haproxy.spec
+@@ -17,6 +17,7 @@
+ #
+ # $ rpmbuild --define '_build_type debug' -ba haproxy.spec
+ %global build_type %{?_build_type}%{!?_build_type:release}
++%define build_type debug
+ 
+ %define real_name haproxy28
+ 
+@@ -74,7 +75,7 @@ regparm_opts="USE_REGPARM=1"
+ %define __global_ldflags -g -ggdb3
+ %endif
+ 
+-%{__make} %{?_smp_mflags} CPU="generic" TARGET="linux-glibc" USE_OPENSSL=1 USE_PCRE=1 USE_ZLIB=1 USE_CRYPT_H=1 USE_LINUX_TPROXY=1 USE_GETADDRINFO=1 ${regparm_opts} ADDINC="%{optflags}" ADDLIB="%{__global_ldflags}"
++%{__make} %{?_smp_mflags} CPU="generic" TARGET="linux-glibc" USE_OPENSSL=1 USE_PCRE=1 USE_ZLIB=1 USE_CRYPT_H=1 USE_LINUX_TPROXY=1 USE_GETADDRINFO=1 ${regparm_opts} ADDINC="%{optflags}" ADDLIB="%{__global_ldflags}" V=1
+ 
+ %install
+ %{__make} install-bin DESTDIR=%{buildroot} PREFIX=%{_prefix} TARGET="linux-glibc"
